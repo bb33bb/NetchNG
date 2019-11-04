@@ -24,7 +24,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved)
 	return TRUE;
 }
 
-MIB_IPFORWARD_ROW2 GetRoute(const char* address, int netmask, const char* gateway, int index, int metric)
+MIB_IPFORWARD_ROW2 GetRouteE(const char* address, int netmask, const char* gateway, int index, int metric)
 {
 	MIB_IPFORWARD_ROW2 row = { 0 };
 	row.InterfaceIndex = index;
@@ -40,12 +40,12 @@ MIB_IPFORWARD_ROW2 GetRoute(const char* address, int netmask, const char* gatewa
 	return row;
 }
 
-DLLEXPORT BOOL CreateRoute(const char* address, int netmask, const char* gateway, int index, int metric = 0)
+DLLEXPORT BOOL CreateRouteE(const char* address, int netmask, const char* gateway, int index, int metric = 0)
 {
-	return (CreateIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
+	return (CreateIpForwardEntry2(&GetRouteE(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
 }
 
-DLLEXPORT BOOL DeleteRoute(const char* address, int netmask, const char* gateway, int index, int metric = 0)
+DLLEXPORT BOOL DeleteRouteE(const char* address, int netmask, const char* gateway, int index, int metric = 0)
 {
-	return (DeleteIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
+	return (DeleteIpForwardEntry2(&GetRouteE(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
 }
