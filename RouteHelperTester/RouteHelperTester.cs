@@ -8,7 +8,8 @@ namespace RouteHelperTester
         public static void Main(string[] args)
         {
             Console.WriteLine("Best Interface: {0}", NativeMethods.GetBestInterface("114.114.114.114"));
-            Console.ReadLine();
+
+            Environment.Exit(0);
         }
     }
 }
